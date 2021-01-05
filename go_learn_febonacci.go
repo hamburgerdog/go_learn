@@ -11,28 +11,16 @@ import "fmt"
 
 // 返回一个“返回int的函数”
 func fibonacci() func() int {
-	n := 0
-	x := 0
-	y := 1
+	x, y := 0, 1
 	return func() int {
-		if n == 0 {
-			n += 1
-			return x
-		} else if n == 1 {
-			n += 1
-			return y
-		} else {
-			tmp := y
-			y += x
-			x = tmp
-			return y
-		}
+		x, y = y, x+y
+		return x
 	}
 }
 
 func main() {
 	f := fibonacci()
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 20; i++ {
 		fmt.Println(f())
 	}
 }
